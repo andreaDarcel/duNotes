@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="duNotes.Views.AccueilPage"
+             Title="{Binding Title}">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Bienvenue sur duNotes 📚" FontSize="22" FontAttributes="Bold" TextColor="#2B2B2B" />
+            <Label Text="Centralisez et partagez vos fiches de révision et cours." FontSize="14" TextColor="#666666" />
+            
+            <Label Text="Documents récents" FontSize="18" FontAttributes="Bold" Margin="0,15,0,5" />
+            <CollectionView ItemsSource="{Binding RecentDocuments}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,5" Padding="15" CornerRadius="10" BorderColor="#E0E0E0">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Matiere}" TextColor="#007ACC" FontSize="12" />
+                                <Label Text="{Binding Auteur}" TextColor="#888888" FontSize="12" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
