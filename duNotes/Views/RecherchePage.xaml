@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="duNotes.Views.RecherchePage"
+             Title="Rechercher">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <SearchBar Placeholder="Trouvez le bon document..." Text="{Binding SearchQuery}" SearchCommand="{Binding LancerRechercheCommand}" />
+            
+            <Label Text="Affiner la recherche" FontSize="18" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="10">
+                <Frame BackgroundColor="#EFF4FF" BorderColor="#1E5AE6" CornerRadius="16" Padding="10,5">
+                    <Label Text="Licence informatique • L1 ✕" FontSize="12" TextColor="#1E5AE6" />
+                </Frame>
+                <Frame BackgroundColor="#EFF4FF" BorderColor="#1E5AE6" CornerRadius="16" Padding="10,5">
+                    <Label Text="Mathématiques ✕" FontSize="12" TextColor="#1E5AE6" />
+                </Frame>
+            </HorizontalStackLayout>
+
+            <CollectionView ItemsSource="{Binding SearchResults}" Margin="0,10,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,5" Padding="15" CornerRadius="12" BorderColor="#E5E7EB" BackgroundColor="White">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OuvrirDocumentCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                                <Frame Grid.Column="0" BackgroundColor="#EFF4FF" BorderColor="Transparent" CornerRadius="8" WidthRequest="44" HeightRequest="50" Padding="0" VerticalOptions="Center">
+                                    <Label Text="PDF" FontAttributes="Bold" FontSize="11" TextColor="#1E5AE6" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Frame>
+                                <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                    <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="15" TextColor="#111827" />
+                                    <Label Text="{Binding Matiere}" FontSize="12" TextColor="#6B7280" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

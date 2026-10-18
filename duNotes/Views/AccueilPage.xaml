@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="duNotes.Views.AccueilPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Header Bar -->
+            <Grid ColumnDefinitions="*, Auto">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="BONJOUR CAMILLE" FontSize="11" FontAttributes="Bold" TextColor="#6B7280" CharacterSpacing="1" />
+                    <Label Text="Vos révisions, bien rangées." FontSize="20" FontAttributes="Bold" TextColor="#111827" />
+                </VerticalStackLayout>
+                <Button Grid.Column="1" Text="🔍" Command="{Binding OuvrirRechercheCommand}" BackgroundColor="#F3F4F6" TextColor="#111827" WidthRequest="44" HeightRequest="44" CornerRadius="22" />
+            </Grid>
+
+            <!-- Banner Filiere -->
+            <Frame BackgroundColor="#EFF4FF" BorderColor="Transparent" CornerRadius="12" Padding="15">
+                <VerticalStackLayout Spacing="3">
+                    <Label Text="MA FILIÈRE" FontSize="10" FontAttributes="Bold" TextColor="#1E5AE6" CharacterSpacing="1" />
+                    <Label Text="{Binding FiliereNiveau}" FontSize="14" FontAttributes="Bold" TextColor="#1E5AE6" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Grid Vos Matières -->
+            <Label Text="Vos matières" FontSize="16" FontAttributes="Bold" TextColor="#111827" />
+            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" RowSpacing="12" ColumnSpacing="12">
+                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="12" Padding="15" BorderColor="#E5E7EB" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="∑" FontSize="20" TextColor="#1E5AE6" />
+                        <Label Text="Mathématiques" FontAttributes="Bold" FontSize="14" />
+                        <Label Text="48 documents" FontSize="12" TextColor="#6B7280" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Row="0" Grid.Column="1" CornerRadius="12" Padding="15" BorderColor="#E5E7EB" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&lt;/&gt;" FontSize="18" TextColor="#1E5AE6" />
+                        <Label Text="Algorithmique" FontAttributes="Bold" FontSize="14" />
+                        <Label Text="36 documents" FontSize="12" TextColor="#6B7280" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Row="1" Grid.Column="0" CornerRadius="12" Padding="15" BorderColor="#E5E7EB" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="&gt;_" FontSize="18" TextColor="#1E5AE6" />
+                        <Label Text="Programmation" FontAttributes="Bold" FontSize="14" />
+                        <Label Text="29 documents" FontSize="12" TextColor="#6B7280" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Grid.Row="1" Grid.Column="1" CornerRadius="12" Padding="15" BorderColor="#E5E7EB" BackgroundColor="White">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="⚙" FontSize="18" TextColor="#1E5AE6" />
+                        <Label Text="Systèmes" FontAttributes="Bold" FontSize="14" />
+                        <Label Text="21 documents" FontSize="12" TextColor="#6B7280" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <!-- Document Card -->
+            <Label Text="Pour vos prochaines révisions" FontSize="16" FontAttributes="Bold" TextColor="#111827" Margin="0,10,0,0" />
+            <CollectionView ItemsSource="{Binding RecentDocuments}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,5" Padding="15" CornerRadius="12" BorderColor="#E5E7EB" BackgroundColor="White">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OuvrirDocumentCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                                <Frame Grid.Column="0" BackgroundColor="#EFF4FF" BorderColor="Transparent" CornerRadius="8" WidthRequest="44" HeightRequest="50" Padding="0" VerticalOptions="Center">
+                                    <Label Text="PDF" FontAttributes="Bold" FontSize="11" TextColor="#1E5AE6" HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Frame>
+                                <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                    <Label Text="{Binding Titre}" FontAttributes="Bold" FontSize="15" TextColor="#111827" />
+                                    <Label Text="Mathématiques • L1 • Fiche" FontSize="12" TextColor="#6B7280" />
+                                    <HorizontalStackLayout Spacing="10" Margin="0,4,0,0">
+                                        <Label Text="{Binding TailleFichier}" FontSize="12" TextColor="#6B7280" />
+                                        <Label Text="★ 4,8 (32)" FontSize="12" FontAttributes="Bold" TextColor="#D97706" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

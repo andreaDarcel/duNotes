@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="duNotes.Views.InscriptionPage"
+             Title="{Binding Title}">
+    <VerticalStackLayout Padding="25" Spacing="15" VerticalOptions="Center">
+        <Label Text="Créer un compte" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+        <Entry Placeholder="Nom complet" Text="{Binding Nom}" />
+        <Entry Placeholder="Adresse Email" Text="{Binding Email}" Keyboard="Email" />
+        <Entry Placeholder="Mot de passe" Text="{Binding MotDePasse}" IsPassword="True" />
+        <Button Text="S'inscrire" Command="{Binding SInscrireCommand}" BackgroundColor="#28A745" TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
