@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="duNotes.Views.ApercuPage"
+             Title="Aperçu léger">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Frame BackgroundColor="#FFFFFF" BorderColor="#E5E7EB" CornerRadius="12" Padding="20">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="MATHÉMATIQUES LICENCE 1" FontSize="11" FontAttributes="Bold" TextColor="#6B7280" />
+                    <Label Text="{Binding SelectedDocument.Titre}" FontSize="20" FontAttributes="Bold" TextColor="#111827" />
+                    <Label Text="Fiche de révision • Inès Martin" FontSize="12" TextColor="#1E5AE6" />
+                    
+                    <BoxView HeightRequest="1" Color="#E5E7EB" Margin="0,5" />
+
+                    <Label Text="01 / Reconnaître une suite" FontAttributes="Bold" FontSize="14" />
+                    <Label Text="Une suite (Un) associe un réel à chaque entier n. Elle peut être définie explicitement ou par récurrence." FontSize="13" TextColor="#374151" />
+
+                    <Label Text="02 / Étudier la convergence" FontAttributes="Bold" FontSize="14" Margin="0,10,0,0" />
+                    <Label Text="Une suite croissante et majorée converge. Une suite décroissante et minorée converge également." FontSize="13" TextColor="#374151" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="Un aperçu, pas le fichier complet" FontAttributes="Bold" FontSize="14" HorizontalOptions="Center" />
+            <Label Text="Aperçu allégé: 64 Ko. Téléchargez le PDF pour lire les 6 pages." FontSize="12" TextColor="#6B7280" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+            <Button Text="Télécharger le PDF (480 Ko)" Command="{Binding TelechargerPdfCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

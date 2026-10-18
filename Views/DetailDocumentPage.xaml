@@ -2,11 +2,43 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="duNotes.Views.DetailDocumentPage"
-             Title="{Binding Title}">
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Label Text="{Binding SelectedDocument.Titre}" FontSize="22" FontAttributes="Bold" />
-        <Label Text="{Binding SelectedDocument.Matiere}" TextColor="#007ACC" FontSize="14" />
-        <Label Text="{Binding SelectedDocument.Description}" FontSize="14" />
-        <Button Text="Télécharger pour la consultation hors-ligne" Command="{Binding TelechargerHorsLigneCommand}" />
-    </VerticalStackLayout>
+             Title="Le document">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Fiche de révision" FontSize="12" FontAttributes="Bold" TextColor="#6B7280" />
+            <Label Text="{Binding SelectedDocument.Titre}" FontSize="22" FontAttributes="Bold" TextColor="#111827" />
+            <Label Text="Licence informatique • L1 • Semestre 1" FontSize="13" TextColor="#6B7280" />
+            <Label Text="{Binding SelectedDocument.TailleFichier}" FontSize="13" FontAttributes="Bold" TextColor="#1E5AE6" />
+
+            <Button Text="Voir l'aperçu léger (64 Ko)" Command="{Binding VoirApercuCommand}" BackgroundColor="#F3F4F6" TextColor="#111827" />
+
+            <Label Text="À propos de cette fiche" FontSize="16" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Label Text="{Binding SelectedDocument.Description}" FontSize="14" TextColor="#374151" />
+
+            <Grid ColumnDefinitions="*, *" Margin="0,10,0,0">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Partagée par" FontSize="12" TextColor="#6B7280" />
+                    <Label Text="{Binding SelectedDocument.Auteur}" FontAttributes="Bold" FontSize="14" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Mise en ligne" FontSize="12" TextColor="#6B7280" />
+                    <Label Text="28 septembre 2026" FontAttributes="Bold" FontSize="14" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Grid ColumnDefinitions="*, Auto" Margin="0,15,0,0">
+                <Label Grid.Column="0" Text="★ 4,8 (32 avis d'étudiants)" FontAttributes="Bold" FontSize="16" />
+                <Button Grid.Column="1" Text="Noter" Command="{Binding OuvrirNotationCommand}" HeightRequest="36" Padding="10,0" BackgroundColor="#EFF4FF" TextColor="#1E5AE6" />
+            </Grid>
+
+            <Frame BackgroundColor="White" BorderColor="#E5E7EB" CornerRadius="8" Padding="12">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Léa R. ★ 5/5 — 2 octobre 2026" FontSize="12" FontAttributes="Bold" />
+                    <Label Text="« Claire et concise, les exemples m'ont aidée à comprendre les limites. »" FontSize="13" TextColor="#4B5563" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Télécharger 480 Ko" Command="{Binding TelechargerCommand}" Margin="0,15,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
