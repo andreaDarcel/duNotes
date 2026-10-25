@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using duNotes.Models;
 using duNotes.Services;
+using duNotes.Views;
 using System.Collections.ObjectModel;
 
 namespace duNotes.ViewModels;
@@ -13,11 +14,14 @@ public partial class AccueilViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<Document> _recentDocuments = new();
 
+    [ObservableProperty]
+    private string _filiereNiveau = "Licence informatique • L1";
+
     public AccueilViewModel(DocumentService documentService)
     {
         Title = "duNotes - Accueil";
         _documentService = documentService;
-        Task.Run(ChargerDocuments);
+        _ = ChargerDocuments();
     }
 
     [RelayCommand]
@@ -27,5 +31,20 @@ public partial class AccueilViewModel : BaseViewModel
         var docs = await _documentService.GetDocumentsAsync();
         RecentDocuments = new ObservableCollection<Document>(docs);
         IsBusy = false;
+    }
+
+    [RelayCommand]
+    private Task OuvrirRecherche() => Shell.Current.GoToAsync(nameof(RecherchePage));
+
+    [RelayCommand]
+    private async Task OuvrirDocument(Document document)
+    {
+        if (document is null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(DetailDocumentPage), new Dictionary<string, object>
+        {
+            ["SelectedDocument"] = document
+        });
     }
 }

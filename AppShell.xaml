@@ -10,18 +10,20 @@
     Shell.TabBarTitleColor="#6B7280"
     Shell.TabBarUnselectedColor="#6B7280">
 
+    <ShellContent x:Name="ConnexionShellContent" Route="connexion" />
+
     <TabBar>
         <Tab Title="Accueil" Icon="home.svg">
-            <ShellContent ContentTemplate="{DataTemplate views:AccueilPage}" />
+            <ShellContent x:Name="AccueilShellContent" Route="accueil" />
         </Tab>
         <Tab Title="Explorer" Icon="explore.svg">
-            <ShellContent ContentTemplate="{DataTemplate views:ExplorerPage}" />
+            <ShellContent x:Name="ExplorerShellContent" Route="explorer" />
         </Tab>
         <Tab Title="Déposer" Icon="upload.svg">
-            <ShellContent ContentTemplate="{DataTemplate views:DepotPage}" />
+            <ShellContent x:Name="DepotShellContent" Route="depot" />
         </Tab>
         <Tab Title="Hors ligne" Icon="offline.svg">
-            <ShellContent ContentTemplate="{DataTemplate views:HorsLignePage}" />
+            <ShellContent x:Name="HorsLigneShellContent" Route="hors-ligne" />
         </Tab>
     </TabBar>
 </Shell>

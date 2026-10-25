@@ -21,7 +21,7 @@ public partial class RechercheViewModel : BaseViewModel
     {
         Title = "Rechercher";
         _documentService = documentService;
-        Task.Run(LancerRecherche);
+        _ = LancerRecherche();
     }
 
     [RelayCommand]

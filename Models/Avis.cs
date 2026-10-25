@@ -1,11 +1,14 @@
+using SQLite;
+
 namespace duNotes.Models;
 
 public class Avis
 {
-    public string Id { get; set; } = Guid.NewGuid().ToString();
-    public string DocumentId { get; set; } = string.Empty;
-    public string UtilisateurNom { get; set; } = string.Empty;
+    [PrimaryKey, AutoIncrement]
+    public int AvisId { get; set; }
+    public int DocumentId { get; set; }
+    public int UtilisateurId { get; set; }
     public int Note { get; set; }
-    public string Commentaire { get; set; } = string.Empty;
-    public DateTime Date { get; set; } = DateTime.Now;
+    public string? Commentaire { get; set; }
+    public DateTime DateAvis { get; set; } = DateTime.UtcNow;
 }

@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using duNotes.Models;
 using duNotes.Services;
+using duNotes.Views;
 using System.Collections.ObjectModel;
 
 namespace duNotes.ViewModels;
@@ -20,6 +21,7 @@ public partial class ExplorerViewModel : BaseViewModel
     {
         Title = "Explorer les cours";
         _documentService = documentService;
+        _ = Rechercher();
     }
 
     [RelayCommand]
@@ -29,5 +31,17 @@ public partial class ExplorerViewModel : BaseViewModel
         var results = await _documentService.GetDocumentsAsync(SearchQuery);
         SearchResults = new ObservableCollection<Document>(results);
         IsBusy = false;
+    }
+
+    [RelayCommand]
+    private async Task OuvrirDocument(Document document)
+    {
+        if (document is null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(DetailDocumentPage), new Dictionary<string, object>
+        {
+            ["SelectedDocument"] = document
+        });
     }
 }

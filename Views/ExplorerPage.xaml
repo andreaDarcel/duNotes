@@ -9,6 +9,9 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="0,5" Padding="15">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.OuvrirDocumentCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
                         <VerticalStackLayout>
                             <Label Text="{Binding Titre}" FontAttributes="Bold" />
                             <Label Text="{Binding Matiere}" TextColor="#007ACC" />

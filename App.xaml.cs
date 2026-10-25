@@ -2,13 +2,14 @@ namespace duNotes;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
-	}
+    private readonly IServiceProvider _services;
 
-	protected override Window CreateWindow(IActivationState? activationState)
-	{
-		return new Window(new AppShell());
-	}
+    public App(Services.DocumentService documentService, IServiceProvider services)
+    {
+        InitializeComponent();
+        _services = services;
+        _ = documentService.InitializeAsync();
+    }
+
+    protected override Window CreateWindow(IActivationState? activationState) => new(new AppShell(_services));
 }

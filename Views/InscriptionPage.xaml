@@ -2,12 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="duNotes.Views.InscriptionPage"
-             Title="{Binding Title}">
-    <VerticalStackLayout Padding="25" Spacing="15" VerticalOptions="Center">
-        <Label Text="Créer un compte" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-        <Entry Placeholder="Nom complet" Text="{Binding Nom}" />
-        <Entry Placeholder="Adresse Email" Text="{Binding Email}" Keyboard="Email" />
-        <Entry Placeholder="Mot de passe" Text="{Binding MotDePasse}" IsPassword="True" />
-        <Button Text="S'inscrire" Command="{Binding SInscrireCommand}" BackgroundColor="#28A745" TextColor="White" />
-    </VerticalStackLayout>
+             Title="{Binding Title}"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="28,52,28,32" Spacing="12">
+            <HorizontalStackLayout Spacing="10" Margin="0,0,0,20">
+                <Border BackgroundColor="#1E5AE6" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="38" WidthRequest="38">
+                    <Label Text="d" TextColor="White" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Border>
+                <Label Text="duNotes" FontSize="22" FontAttributes="Bold" TextColor="#1E5AE6" VerticalTextAlignment="Center" />
+            </HorizontalStackLayout>
+            <Label Text="Créez votre compte" FontSize="28" FontAttributes="Bold" TextColor="#182230" />
+            <Label Text="Rejoignez la communauté et partagez vos meilleures ressources." FontSize="14" TextColor="#667085" Margin="0,0,0,12" />
+            <Label Text="Nom complet" FontSize="12" FontAttributes="Bold" TextColor="#344054" />
+            <Entry Placeholder="Camille Martin" Text="{Binding Nom}" />
+            <Label Text="Adresse e-mail" FontSize="12" FontAttributes="Bold" TextColor="#344054" Margin="0,5,0,0" />
+            <Entry Placeholder="camille@exemple.fr" Text="{Binding Email}" Keyboard="Email" />
+            <Label Text="Mot de passe" FontSize="12" FontAttributes="Bold" TextColor="#344054" Margin="0,5,0,0" />
+            <Entry Placeholder="8 caractères minimum" Text="{Binding MotDePasse}" IsPassword="True" />
+            <Label Text="Confirmer le mot de passe" FontSize="12" FontAttributes="Bold" TextColor="#344054" Margin="0,5,0,0" />
+            <Entry Placeholder="Répétez votre mot de passe" Text="{Binding ConfirmationMotDePasse}" IsPassword="True" />
+            <Label Text="{Binding MessageErreur}" IsVisible="{Binding AUneErreur}" FontSize="12" TextColor="#B42318" />
+            <Button Text="Créer mon compte" Command="{Binding SInscrireCommand}" BackgroundColor="#D83A4E" Margin="0,8,0,0" />
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="4" Margin="0,8,0,0">
+                <Label Text="Déjà membre ?" FontSize="12" TextColor="#667085" />
+                <Label Text="Se connecter" FontSize="12" FontAttributes="Bold" TextColor="#1E5AE6">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RetourConnexionCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,6 +1,7 @@
 using duNotes.Services;
 using duNotes.ViewModels;
 using duNotes.Views;
+using duNotes.Data;
 using Microsoft.Extensions.Logging;
 
 namespace duNotes;
@@ -24,6 +25,7 @@ public static class MauiProgram
 
 		// Services
 		builder.Services.AddSingleton<AuthService>();
+		builder.Services.AddSingleton<AppDbContext>();
 		builder.Services.AddSingleton<DocumentService>();
 		builder.Services.AddSingleton<OfflineService>();
 

@@ -15,17 +15,20 @@ public class OfflineService
     public async Task SauvegarderDocumentAsync(Document doc)
     {
         await Task.Delay(300);
-        if (!_documentsHorsLigne.Any(d => d.Id == doc.Id))
+        if (!_documentsHorsLigne.Any(document => document.DocumentId == doc.DocumentId))
         {
             doc.EstTelecharge = true;
             _documentsHorsLigne.Add(doc);
         }
     }
 
-    public async Task SupprimerDocumentAsync(string docId)
+    public async Task SupprimerDocumentAsync(string documentId)
     {
         await Task.Delay(200);
-        var doc = _documentsHorsLigne.FirstOrDefault(d => d.Id == docId);
+        if (!int.TryParse(documentId, out var parsedDocumentId))
+            return;
+
+        var doc = _documentsHorsLigne.FirstOrDefault(document => document.DocumentId == parsedDocumentId);
         if (doc != null)
         {
             doc.EstTelecharge = false;

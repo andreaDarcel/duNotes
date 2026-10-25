@@ -3,9 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="duNotes.Views.NotationPage"
              Title="{Binding Title}">
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Label Text="Évaluer ce document" FontSize="20" FontAttributes="Bold" />
-        <Editor Placeholder="Laissez votre avis..." Text="{Binding Commentaire}" HeightRequest="100" />
-        <Button Text="Envoyer l'avis" Command="{Binding SoumettreAvisCommand}" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="14">
+            <Label Text="Noter le document" FontSize="12" FontAttributes="Bold" TextColor="#1E5AE6" />
+            <Label Text="Cette fiche vous a-t-elle aidé ?" FontSize="24" FontAttributes="Bold" TextColor="#182230" />
+            <Label Text="Votre avis aide les étudiants à choisir les ressources les plus utiles." FontSize="14" TextColor="#667085" />
+            <Border BackgroundColor="White" Stroke="#E5E7EB" StrokeShape="RoundRectangle 12" Padding="14" Margin="0,6">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="{Binding SelectedDocument.Titre}" FontSize="15" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                    <Label Text="{Binding SelectedDocument.Matiere}" FontSize="12" TextColor="#667085" />
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="Votre note" FontSize="14" FontAttributes="Bold" />
+            <Grid ColumnDefinitions="*,*,*,*,*" ColumnSpacing="8">
+                <Button Grid.Column="0" Text="★" Command="{Binding ChoisirNoteCommand}" CommandParameter="1" BackgroundColor="#FFF7E8" TextColor="#C47B14" />
+                <Button Grid.Column="1" Text="★" Command="{Binding ChoisirNoteCommand}" CommandParameter="2" BackgroundColor="#FFF7E8" TextColor="#C47B14" />
+                <Button Grid.Column="2" Text="★" Command="{Binding ChoisirNoteCommand}" CommandParameter="3" BackgroundColor="#FFF7E8" TextColor="#C47B14" />
+                <Button Grid.Column="3" Text="★" Command="{Binding ChoisirNoteCommand}" CommandParameter="4" BackgroundColor="#FFF7E8" TextColor="#C47B14" />
+                <Button Grid.Column="4" Text="★" Command="{Binding ChoisirNoteCommand}" CommandParameter="5" BackgroundColor="#FFF7E8" TextColor="#C47B14" />
+            </Grid>
+            <Label Text="{Binding Note, StringFormat='Note sélectionnée : {0}/5'}" FontSize="12" TextColor="#667085" HorizontalOptions="Center" />
+            <Label Text="Votre commentaire" FontSize="14" FontAttributes="Bold" Margin="0,8,0,0" />
+            <Editor Placeholder="Qu'avez-vous pensé de cette ressource ?" Text="{Binding Commentaire}" HeightRequest="120" BackgroundColor="White" />
+            <Label Text="{Binding MessageErreur}" IsVisible="{Binding AUneErreur}" FontSize="12" TextColor="#B42318" />
+            <Button Text="Envoyer mon avis" Command="{Binding SoumettreAvisCommand}" BackgroundColor="#D83A4E" Margin="0,8,0,0" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

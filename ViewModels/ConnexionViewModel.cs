@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using duNotes.Services;
+using duNotes.Views;
 
 namespace duNotes.ViewModels;
 
@@ -14,6 +15,15 @@ public partial class ConnexionViewModel : BaseViewModel
     [ObservableProperty]
     private string _motDePasse = string.Empty;
 
+    [ObservableProperty]
+    private bool _resterConnecte = true;
+
+    [ObservableProperty]
+    private bool _aUneErreur;
+
+    [ObservableProperty]
+    private string _messageErreur = string.Empty;
+
     public ConnexionViewModel(AuthService authService)
     {
         Title = "Connexion";
@@ -25,7 +35,14 @@ public partial class ConnexionViewModel : BaseViewModel
     {
         if (await _authService.ConnexionAsync(Email, MotDePasse))
         {
-            await Shell.Current.GoToAsync("//AccueilPage");
+            await Shell.Current.GoToAsync("//accueil");
+            return;
         }
+
+        MessageErreur = "Renseignez votre e-mail et votre mot de passe.";
+        AUneErreur = true;
     }
+
+    [RelayCommand]
+    private Task OuvrirInscription() => Shell.Current.GoToAsync(nameof(InscriptionPage));
 }
